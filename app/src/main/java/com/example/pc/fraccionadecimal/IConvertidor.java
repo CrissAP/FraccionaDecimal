@@ -24,6 +24,7 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
     private Button button9;
     private Button buttonIgual;
     private Button buttonC;
+    private Button buttonCA;
     private Button buttonSlash;
     private Button buttonPunto;
 
@@ -56,8 +57,10 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
         this.button9 = findViewById(R.id.button9);
         this.buttonIgual = findViewById(R.id.buttonIgual);
         this.buttonC = findViewById(R.id.buttonC);
+        this.buttonCA = findViewById(R.id.buttonCA);
         this.buttonSlash= findViewById(R.id.buttonSlash);
         this.buttonPunto= findViewById(R.id.buttonPunto);
+
 
 
 
@@ -78,9 +81,7 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
         this.buttonC.setOnClickListener(this);
         this.buttonSlash.setOnClickListener(this);
         this.buttonPunto.setOnClickListener(this);
-
-
-
+        this.buttonCA.setOnClickListener(this);
 
     }
 
@@ -88,6 +89,8 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         int Id=view.getId();
         switch (Id){
+            case R.id.input:
+                break;
             case R.id.button0:
                 append("0");
                 break;
@@ -120,10 +123,10 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonIgual:break;
             case R.id.buttonPunto:
-                if (endsWithOperatore())
-                    replace(".");
-                else
+                if (!(getinput().contains(".")))
                     append(".");
+                //else
+                  //  append(".");
                 break;
             case R.id.buttonSlash:
                 if (endsWithOperatore())
@@ -133,6 +136,9 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonC:
                 delete();
+                break;
+            case R.id.buttonCA:
+                deleteAll();
                 break;
             default:break;
 
@@ -153,6 +159,13 @@ public class IConvertidor extends AppCompatActivity implements View.OnClickListe
     private void delete() {
         if (!isEmty()){
             this.inputtext.getText().delete(getinput().length() - 1, getinput().length());
+
+        }
+
+    }
+    private void deleteAll() {
+        if (!isEmty()){
+            this.inputtext.setText("");
 
         }
 
